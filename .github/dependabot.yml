@@ -1,0 +1,72 @@
+# SPDX-FileCopyrightText: 2026 Your Name
+# SPDX-License-Identifier: Apache-2.0
+
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Istanbul"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "gradle"
+    commit-message:
+      prefix: "chore(deps): "
+    groups:
+      androidx:
+        patterns:
+          - "androidx.*"
+      kotlin:
+        patterns:
+          - "org.jetbrains.kotlin*"
+      kotlinx:
+        patterns:
+          - "org.jetbrains.kotlinx*"
+      okhttp:
+        patterns:
+          - "com.squareup.okhttp3*"
+      hilt:
+        patterns:
+          - "com.google.dagger*"
+          - "androidx.hilt*"
+      room:
+        patterns:
+          - "androidx.room*"
+      workmanager:
+        patterns:
+          - "androidx.work*"
+      compose:
+        patterns:
+          - "androidx.compose*"
+      coil:
+        patterns:
+          - "io.coil-kt*"
+      snakeyaml:
+        patterns:
+          - "org.snakeyaml*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Istanbul"
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Istanbul"
+    labels:
+      - "dependencies"
+      - "docker"
