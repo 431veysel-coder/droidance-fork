@@ -19,9 +19,9 @@ env:
   JAVA_HOME: /usr/lib/jvm/temurin-21-jdk
 
 jobs:
-  # ------------------------------------------------------------
-  # 1. KOD KALİTESİ VE STATİK ANALİZ
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 1. Static Analysis # 1. KOD KALİTESİ VE STATİK ANALİZ Lint
+  # ----------------------------
   static-analysis:
     name: Static Analysis & Lint
     runs-on: ubuntu-latest
@@ -72,9 +72,9 @@ jobs:
           name: lint-report
           path: app/build/reports/lint-results-debug.html
 
-  # ------------------------------------------------------------
-  # 2. UNIT TESTLER (JVM - ROBOLECTRIC)
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 2. Unit Tests (Robolectric)
+  # ----------------------------
   unit-tests:
     name: Unit Tests (Robolectric)
     runs-on: ubuntu-latest
@@ -115,11 +115,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: **/build/reports/jacoco/**/*.html
+          path: "**/build/reports/jacoco/**/*.html"
 
-  # ------------------------------------------------------------
-  # 3. ENTEGRASYON TESTLERİ (EMÜLATÖR)
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 3. Instrumented Tests (Emulator)
+  # ----------------------------
   instrumented-tests:
     name: Instrumented Tests (Emulator)
     runs-on: ubuntu-latest
@@ -175,9 +175,9 @@ jobs:
             **/build/outputs/androidTest-results/**/*.xml
             **/build/reports/androidTests/**/*.html
 
-  # ------------------------------------------------------------
-  # 4. DEBUG APK BUILD
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 4. Build Debug APK
+  # ----------------------------
   build-debug:
     name: Build Debug APK
     runs-on: ubuntu-latest
@@ -212,12 +212,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: "app/build/outputs/apk/debug/app-debug.apk"
           retention-days: 30
 
-  # ------------------------------------------------------------
-  # 5. RELEASE APK BUILD (TAG PUSH'UNDA)
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 5. Release APK Build (Tag Push)
+  # ----------------------------
   build-release:
     name: Build Release APK
     runs-on: ubuntu-latest
@@ -284,9 +284,9 @@ jobs:
           prerelease: ${{ contains(github.ref, '-') }}
           generate_release_notes: true
 
-  # ------------------------------------------------------------
-  # 6. TERMUX BOOTSTRAP VALIDATION
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 6. Termux Bootstrap Validation
+  # ----------------------------
   termux-validation:
     name: Termux Bootstrap Validation
     runs-on: ubuntu-latest
@@ -314,12 +314,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: termux-bootstrap
-          path: termux-bootstrap.zip
+          path: "termux-bootstrap.zip"
           retention-days: 7
 
-  # ------------------------------------------------------------
-  # 7. DEPENDENCY REVIEW
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 7. Dependency Review
+  # ----------------------------
   dependency-review:
     name: Dependency Review
     runs-on: ubuntu-latest
@@ -334,9 +334,9 @@ jobs:
           config-file: '.github/dependency-review-config.yml'
           fail-on-severity: high
 
-  # ------------------------------------------------------------
-  # 8. SECURITY SCAN (TRIVY)
-  # ------------------------------------------------------------
+  # ----------------------------
+  # 8. Security Scan (Trivy)
+  # ----------------------------
   security-scan:
     name: Security Scan (Trivy)
     runs-on: ubuntu-latest
