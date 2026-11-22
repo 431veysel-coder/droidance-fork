@@ -1,0 +1,169 @@
+# SPDX-FileCopyrightText: 2026 Your Name
+# SPDX-License-Identifier: Apache-2.0
+
+name: Prepare Release Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing public version tag, such as v0.1.0
+        required: true
+        type: string
+      release_notes_zh:
+        description: Simplified Chinese notes for this release only
+        required: true
+        type: string
+      release_notes_en:
+        description: English notes for this release only
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Create Release Draft
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: write
+    timeout-minutes: 60
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_NOTES_ZH: ${{ inputs.release_notes_zh }}
+      RELEASE_NOTES_EN: ${{ inputs.release_notes_en }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: 35
+          ndk-version: r27b
+          build-tools: 35.0.0
+
+      - name: Validate Tagged Source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import os, sys
+          from pathlib import Path
+          notes_zh = os.environ['RELEASE_NOTES_ZH'].strip()
+          notes_en = os.environ.get('RELEASE_NOTES_EN', '').strip()
+          if not notes_zh:
+              sys.exit('Simplified Chinese release notes are required')
+          (Path(os.environ['RUNNER_TEMP']) / 'release-notes.zh.md').write_text(notes_zh + '\n', encoding='utf-8')
+          if notes_en:
+              (Path(os.environ['RUNNER_TEMP']) / 'release-notes.en.md').write_text(notes_en + '\n', encoding='utf-8')
+          PY
+
+      - name: Run Release Validation Script
+        run: |
+          python3 scripts/release.py identity \
+            --tag "$RELEASE_TAG" \
+            --notes-zh "$RUNNER_TEMP/release-notes.zh.md" \
+            --notes-en "$RUNNER_TEMP/release-notes.en.md" \
+            --output "$RUNNER_TEMP/release"
+
+      - name: Check Existing Release
+        run: |
+          gh api --paginate --slurp "repos/$GITHUB_REPOSITORY/releases" > "$RUNNER_TEMP/releases.json"
+          python3 - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          releases = json.loads((Path(os.environ['RUNNER_TEMP']) / 'releases.json').read_text())
+          tag = os.environ['RELEASE_TAG']
+          if any(release['tag_name'] == tag for page in releases for release in page):
+              sys.exit(f'A release or draft already exists for this tag: {tag}')
+          PY
+
+      - name: Verify Source and Build Release APK
+        env:
+          ORG_GRADLE_PROJECT_droidanceUpdateRepository: ${{ github.repository }}
+        run: |
+          ./gradlew :app:assembleRelease --no-daemon
+          python3 scripts/verify_native.py app/build/outputs/apk/release/app-release-unsigned.apk
+          python3 scripts/verify_source.py
+          python3 scripts/verify_secrets.py
+
+      - name: Sign and Verify APK
+        env:
+          SIGNING_KEYSTORE_BASE64: ${{ secrets.SIGNING_KEYSTORE_BASE64 }}
+          SIGNING_ALIAS: ${{ secrets.SIGNING_ALIAS }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_CERT_SHA256: ${{ vars.SIGNING_CERT_SHA256 }}
+        run: |
+          set -euo pipefail
+          trap 'rm -f "$RUNNER_TEMP/release.jks"' EXIT
+          python3 - <<'PY'
+          import base64, os, sys
+          from pathlib import Path
+          for name in ('SIGNING_KEYSTORE_BASE64', 'SIGNING_ALIAS', 'SIGNING_STORE_PASSWORD', 'SIGNING_KEY_PASSWORD', 'SIGNING_CERT_SHA256'):
+              if not os.environ.get(name):
+                  sys.exit(f'Missing release configuration: {name}')
+          path = Path(os.environ['RUNNER_TEMP']) / 'release.jks'
+          path.write_bytes(base64.b64decode(os.environ['SIGNING_KEYSTORE_BASE64'], validate=True))
+          path.chmod(0o600)
+          PY
+          APK_UNSIGNED="app/build/outputs/apk/release/app-release-unsigned.apk"
+          APK_SIGNED="$RUNNER_TEMP/release/droidance-${RELEASE_TAG#v}.apk"
+          mkdir -p "$(dirname "$APK_SIGNED")"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign \
+            --ks "$RUNNER_TEMP/release.jks" \
+            --ks-key-alias "$SIGNING_ALIAS" \
+            --ks-pass env:SIGNING_STORE_PASSWORD \
+            --key-pass env:SIGNING_KEY_PASSWORD \
+            --out "$APK_SIGNED" "$APK_UNSIGNED"
+          python3 scripts/release.py verify-apk \
+            --identity "$RUNNER_TEMP/release/identity.json" \
+            --apk "$APK_SIGNED" \
+            --sdk "$ANDROID_HOME" \
+            --certificate "$SIGNING_CERT_SHA256"
+          python3 scripts/verify_native.py "$APK_SIGNED"
+
+      - name: Generate Release Artifacts
+        run: |
+          APK="$RUNNER_TEMP/release/droidance-${RELEASE_TAG#v}.apk"
+          sha256sum "$APK" > "$APK.sha256"
+          cp "$RUNNER_TEMP/release/identity.json" "$RUNNER_TEMP/release/release.json"
+          cp "$RUNNER_TEMP/release-notes.zh.md" "$RUNNER_TEMP/release/notes.md"
+          if [[ -f "$RUNNER_TEMP/release-notes.en.md" ]]; then
+            cp "$RUNNER_TEMP/release-notes.en.md" "$RUNNER_TEMP/release/notes.en.md"
+          fi
+
+      - name: Create Draft Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          FLAGS=()
+          if [[ "$RELEASE_TAG" == *-* ]]; then FLAGS+=(--prerelease); fi
+          gh release create "$RELEASE_TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --draft \
+            "${FLAGS[@]}" \
+            --title "Droidance ${RELEASE_TAG#v}" \
+            --notes-file "$RUNNER_TEMP/release/notes.md" \
+            "$RUNNER_TEMP/release/"*.apk \
+            "$RUNNER_TEMP/release/"*.sha256 \
+            "$RUNNER_TEMP/release/release.json"

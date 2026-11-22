@@ -1,0 +1,83 @@
+# SPDX-FileCopyrightText: 2026 Your Name
+# SPDX-License-Identifier: Apache-2.0
+
+# Dependency Review Action configuration
+# https://github.com/actions/dependency-review-action
+
+# Fail on high/critical vulnerabilities
+fail-on-severity: high
+
+# Allow licenses
+allow-licenses:
+  - Apache-2.0
+  - MIT
+  - BSD-2-Clause
+  - BSD-3-Clause
+  - ISC
+  - Public-Domain
+  - CC0-1.0
+  - EPL-2.0
+  - LGPL-2.1-only
+  - LGPL-3.0-only
+  - MPL-2.0
+
+# Deny licenses (copyleft viral licenses)
+deny-licenses:
+  - GPL-2.0-only
+  - GPL-2.0-or-later
+  - GPL-3.0-only
+  - GPL-3.0-or-later
+  - AGPL-3.0-only
+  - AGPL-3.0-or-later
+  - SSPL-1.0
+
+# Allow specific scopes
+allow-scopes:
+  - compile
+  - runtime
+  - implementation
+  - api
+
+# Deny scopes
+deny-scopes:
+  - test
+  - androidTest
+  - testImplementation
+  - androidTestImplementation
+
+# Allow specific packages (known safe)
+allow-packages:
+  # AndroidX / Google libraries
+  - "androidx.*"
+  - "com.google.*"
+  - "com.android.*"
+  # Kotlin stdlib
+  - "org.jetbrains.kotlin:*"
+  # Kotlinx
+  - "org.jetbrains.kotlinx:*"
+  # OkHttp / Retrofit
+  - "com.squareup.okhttp3:*"
+  - "com.squareup.retrofit2:*"
+  # Coil (image loading)
+  - "io.coil-kt:*"
+  # Room
+  - "androidx.room:*"
+  # WorkManager
+  - "androidx.work:*"
+  # Hilt / Dagger
+  - "com.google.dagger:*"
+  - "androidx.hilt:*"
+  # Serialization
+  - "org.jetbrains.kotlinx:kotlinx-serialization-*"
+  # SnakeYAML (Skill YAML parsing)
+  - "org.snakeyaml:*"
+  # Markdown renderer
+  - "com.github.wrdlbrnft:markdown-renderer-*"
+  # Libadb (bundled native)
+  - "com.droidance:libadb:*"
+
+# Block specific vulnerable versions (updated periodically)
+block-packages:
+  - "org.apache.commons:commons-compress:1.20"  # CVE-2022-42969
+  - "com.fasterxml.jackson.core:jackson-databind:2.14.0"  # CVE-2022-42003
+  - "org.yaml:snakeyaml:1.33"  # CVE-2022-1471

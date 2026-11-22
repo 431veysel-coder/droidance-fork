@@ -1,0 +1,44 @@
+{
+  "name": "Droidance Fork Development",
+  "image": "mcr.microsoft.com/devcontainers/android:1-35",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscode-java",
+        "redhat.java",
+        "kotlin.kotlin",
+        "gradle.gradle",
+        "ms-azuretools.vscode-docker",
+        "github.vscode-github-actions",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-21",
+            "path": "/usr/lib/jvm/temurin-21-jdk",
+            "default": true
+          }
+        ],
+        "gradle.java.home": "/usr/lib/jvm/temurin-21-jdk"
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "forwardPorts": [5555, 5037, 6080],
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localWorkspaceFolder}/gradle-cache,target=/home/vscode/.gradle,cached",
+    "source=${localWorkspaceFolder}/android-cache,target=/home/vscode/.android,cached"
+  ],
+  "runArgs": [
+    "--cap-add=SYS_ADMIN",
+    "--cap-add=CAP_DAC_OVERRIDE",
+    "--device=/dev/kvm",
+    "--security-opt=seccomp=unconfined"
+  ]
+}
