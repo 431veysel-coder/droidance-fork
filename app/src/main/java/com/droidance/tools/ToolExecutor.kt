@@ -90,6 +90,9 @@ class ToolExecutor @Inject constructor(
     private val executionContextStore: ExecutionContextStore,
     private val virtualSpaceManager: VirtualSpaceManager,
     private val virtualSpaceSidecarBridge: VirtualSpaceSidecarBridge,
+    private val browserToolRegistrar: BrowserToolRegistrar,
+    private val termuxToolRegistrar: TermuxToolRegistrar,
+    private val jvmToolRegistrar: JvmToolRegistrar,
     private val deviceShellCommandChannel: DeviceShellCommandChannel,
     private val deviceBackend: DeviceBackend,
     private val deviceInfoReader: DeviceInfoReader,
@@ -1117,6 +1120,10 @@ class ToolExecutor @Inject constructor(
             textInputClearDescription = ruleConfigManager.readMarkdownSection("device_tools.md", "text_input_clear_parameter"),
             scrollDirectionDescription = ruleConfigManager.readMarkdownSection("observation_recovery.md", "scroll_direction"),
             batchDescription = ruleConfigManager.readMarkdownSection("completion_recovery.md", "batch_contract")
+                .replace("{batch_policy}", kotlinx.serialization.json.Json.encodeToString(com.droidance.core.agent.config.ScreenActionBatchPolicy.serializer(), ruleConfigManager.harnessPolicy().screenActionBatch)),
+            browserToolRegistrar = browserToolRegistrar,
+            termuxToolRegistrar = termuxToolRegistrar,
+            jvmToolRegistrar = jvmToolRegistrar,
                 .replace("{batch_policy}", kotlinx.serialization.json.Json.encodeToString(com.droidance.core.agent.config.ScreenActionBatchPolicy.serializer(), ruleConfigManager.harnessPolicy().screenActionBatch)),
             screenActions = object : ScreenActionService {
                 override suspend fun click(arguments: String) = executeGroundedClick(arguments, touchInput,

@@ -21,9 +21,6 @@ android {
 }
 dependencies {
     implementation(project(":core:agent"))
-    implementation(project(":core:device:browser"))
-    implementation(project(":core:device:jvm"))
-    implementation(project(":core:device:termux"))
     implementation(libs.rhino)
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.android)
