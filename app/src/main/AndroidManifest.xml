@@ -67,21 +67,6 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
-    <!-- 闹钟 -->
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-
-    <!-- 振动 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- Return the visible host task to input focus after a user taps its editor. -->
-    <uses-permission android:name="android.permission.REORDER_TASKS" />
-
-    <!-- 屏幕常亮（任务执行期间防止息屏） -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-
-    <!-- 应用自更新（安装未知应用权限） -->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-
     <!-- Package visibility for browser/termux intents -->
     <queries>
         <intent>
@@ -99,6 +84,21 @@
             <data android:scheme="http" />
         </intent>
     </queries>
+
+    <!-- 闹钟 -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+    <!-- 振动 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Return the visible host task to input focus after a user taps its editor. -->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+
+    <!-- 屏幕常亮（任务执行期间防止息屏） -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <!-- 应用自更新（安装未知应用权限） -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".DroidanceApp"

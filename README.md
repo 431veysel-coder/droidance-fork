@@ -95,7 +95,7 @@ Droidance **只靠一个多模态大模型 API Key 就能跑起来**：不用 Ro
 需要 JDK 17 与 Android SDK 35。在仓库根目录的 `local.properties` 中配置 `sdk.dir`（该文件已被 Git 忽略），然后：
 
 ```bash
-git clone https://github.com/ybblab/Droidance.git
+git clone https://github.com/YbbLab/Droidance.git
 cd Droidance
 ./gradlew :app:assembleDebug
 ```
