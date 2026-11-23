@@ -27,7 +27,12 @@ val allowedModuleDependencies = mapOf(
     ":core:agent" to setOf(":core:model"),
     ":core:model" to emptySet(),
     ":core:knowledge" to setOf(":core:agent"),
-    ":core:device" to setOf(":core:agent"),
+    ":core:device" to setOf(
+        ":core:agent",
+        ":core:device:browser",
+        ":core:device:jvm",
+        ":core:device:termux"
+    ),
     ":core:device:termux" to setOf(":core:device", ":core:agent"),
     ":core:device:browser" to setOf(":core:device", ":core:agent"),
     ":core:device:jvm" to setOf(":core:device", ":core:agent"),
