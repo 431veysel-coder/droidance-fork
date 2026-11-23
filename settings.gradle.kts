@@ -1,6 +1,7 @@
-// SPDX-FileCopyrightText: 2026 Your Name
+// SPDX-FileCopyrightText: 2026 YBBLab
 // SPDX-License-Identifier: Apache-2.0
 
+// Droidance - Android AI Agent 自动化平台
 pluginManagement {
     includeBuild("build-logic")
     repositories {

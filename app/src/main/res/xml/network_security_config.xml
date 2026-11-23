@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Dynamic LAN endpoints are checked against DNS and actual sockets by CleartextNetworkPolicy. -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors><certificates src="system" /></trust-anchors>
+    </base-config>
+    <!-- No redundant per-domain rules: Shizuku initializes another application context in its
+         helper process. Android rejects multiple application configs with domain overrides. -->
+</network-security-config>

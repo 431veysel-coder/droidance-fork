@@ -1,0 +1,69 @@
+# Gradle / build output
+.gradle/
+.kotlin/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local machine configuration
+local.properties
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.pem
+*.key
+.env
+.env.*
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS / tooling
+.DS_Store
+.claude/
+__pycache__/
+*.pyc
+
+# Temporary working files
+tmp/
+cache/
+*.tmp
+*.bak
+.open-source-verification-*/
+
+# Debug exports and captures
+*.hprof
+captures/
+*.apk
+*.apk.sha256
+*.aab
+*.apks
+*.log
+/artifacts/
+/reports/
+/test-results/
+/screenshots/
+/recordings/
+/debug-exports/
+Droidance-debug-*.zip
+
+# Local release authoring and generated release metadata
+/CHANGELOG.zh.md
+/identity.json
+/release.json
+/notes.md
+/notes.zh.md
+/release-notes.zh.md
+
+# Local documentation, tests and device acceptance tools
+/docs/
+**/src/test/
+**/src/androidTest/
+**/src/testFixtures/
+**/src/debug/
+/scripts/tests/
+/third_party/libadb/tests/
+/.project-internal/

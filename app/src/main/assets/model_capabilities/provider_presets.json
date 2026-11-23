@@ -1,0 +1,598 @@
+[
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "baseUrl": "https://api.deepseek.com",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "deepseek-flash",
+      "deepseek-v4-pro"
+    ]
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "tencent/hy4",
+      "openai/gpt-6.1-terra",
+      "moonshotai/kimi-k3.1-pro",
+      "minimax/minimax-m3.1-flash",
+      "deepseek/deepseek-v4.1-flash-1017",
+      "meta/muse-spark-open",
+      "nvidia/nemotron-3.5-super-vl",
+      "nvidia/nemotron-3.5-super-vl:free",
+      "google/gemini-4-argon",
+      "stepfun/step-5-preview",
+      "anthropic/claude-haiku-5.5",
+      "mistralai/mistral-large-4-0",
+      "openai/gpt-6.1-sol",
+      "anthropic/claude-sonnet-5.5",
+      "qwen/qwen3.8-max-prime",
+      "openai/gpt-6-luna",
+      "anthropic/claude-opus-5.5",
+      "xiaomi/mimo-v2.6-pro-ultraspeed",
+      "xiaomi/mimo-v2.6-flash",
+      "xiaomi/mimo-v2.6-pro",
+      "x-ai/grok-4.7",
+      "z-ai/glm-5.3-flashx",
+      "deepseek/deepseek-v4.1-flash",
+      "openai/gpt-6-astra",
+      "qwen/qwen3.8-max-0902",
+      "meta/muse-spark-1.3",
+      "google/gemini-3.8-flash",
+      "anthropic/claude-fable-5.1",
+      "tencent/hy4-preview",
+      "qwen/qwen3.8-flash",
+      "z-ai/glm-5.3-flash",
+      "z-ai/glm-5.3",
+      "qwen/qwen3.8-27b",
+      "google/gemini-3.7-flash",
+      "google/gemini-3.6-flash",
+      "google/gemini-3.5-flash-lite",
+      "moonshotai/kimi-k3",
+      "openai/gpt-5.6-luna",
+      "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "minimax/minimax-m3",
+      "stepfun/step-3.7-flash",
+      "google/gemini-3.5-flash",
+      "deepseek/deepseek-v4-pro",
+      "google/gemma-4-31b-it:free"
+    ]
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "baseUrl": "https://api.openai.com/v1",
+    "apiType": "OPENAI_RESPONSES",
+    "transportKind": "OPENAI_RESPONSES",
+    "suggestedModels": [
+      "gpt-6.1-terra",
+      "gpt-6.1-sol",
+      "gpt-6-luna",
+      "gpt-6-astra"
+    ]
+  },
+  {
+    "id": "gemini",
+    "name": "Google Gemini",
+    "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "gemini-4-argon",
+      "gemini-3.8-flash",
+      "gemini-3.7-flash",
+      "gemini-3.6-flash",
+      "gemini-3.5-flash-lite",
+      "gemini-3.5-flash"
+    ]
+  },
+  {
+    "id": "zhipu",
+    "name": "Zhipu AI",
+    "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "glm-5.3-flashx",
+      "glm-5.3-flash",
+      "glm-5.3"
+    ]
+  },
+  {
+    "id": "zhipu-coding",
+    "name": "Zhipu AI Coding Plan",
+    "baseUrl": "https://open.bigmodel.cn/api/coding/paas/v4",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "glm-5.3-flash",
+      "glm-5.3"
+    ],
+    "groupId": "zhipu",
+    "addressLabel": "CODING_PLAN"
+  },
+  {
+    "id": "zai-coding",
+    "name": "Z.ai Coding Plan",
+    "baseUrl": "https://api.z.ai/api/coding/paas/v4",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "glm-5.3-flash",
+      "glm-5.3"
+    ],
+    "groupId": "zhipu",
+    "addressLabel": "CODING_PLAN"
+  },
+  {
+    "id": "alibabacloud",
+    "name": "Alibaba Cloud",
+    "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "qwen3.8-max",
+      "qwen3.8-flash",
+      "qwen3.7-plus"
+    ]
+  },
+  {
+    "id": "alibaba-intl-api",
+    "name": "Alibaba Cloud API",
+    "baseUrl": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "groupId": "alibabacloud",
+    "addressLabel": "API",
+    "suggestedModels": [
+      "qwen3.8-max",
+      "qwen3.7-plus"
+    ]
+  },
+  {
+    "id": "alibaba-coding",
+    "name": "Alibaba Cloud Coding Plan",
+    "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "qwen3.7-plus",
+      "qwen3.6-plus",
+      "qwen3.5-plus",
+      "kimi-k2.5",
+      "glm-5",
+      "MiniMax-M2.5"
+    ],
+    "modelListSupported": false,
+    "groupId": "alibabacloud",
+    "addressLabel": "CODING_PLAN"
+  },
+  {
+    "id": "alibaba-coding-intl",
+    "name": "Alibaba Cloud Coding Plan International",
+    "baseUrl": "https://coding-intl.dashscope.aliyuncs.com/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "modelListSupported": false,
+    "suggestedModels": [
+      "qwen3.7-plus",
+      "qwen3.6-plus",
+      "qwen3.5-plus"
+    ],
+    "groupId": "alibabacloud",
+    "addressLabel": "CODING_PLAN"
+  },
+  {
+    "id": "alibaba-token",
+    "name": "Alibaba Cloud Token Plan",
+    "baseUrl": "https://token-plan.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "deepseek-v4.1-flash-1017",
+      "deepseek-v4.1-flash",
+      "qwen3.8-max",
+      "qwen3.8-flash",
+      "glm-5.3",
+      "deepseek-v4-pro-0813",
+      "deepseek-v4-flash-0731",
+      "qwen3.7-max",
+      "qwen3.7-plus",
+      "qwen3.6-flash",
+      "deepseek-v4-pro",
+      "glm-5.2"
+    ],
+    "groupId": "alibabacloud",
+    "addressLabel": "TOKEN_PLAN"
+  },
+  {
+    "id": "kimi",
+    "name": "Kimi",
+    "baseUrl": "https://api.moonshot.ai/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "kimi-k3.1-pro",
+      "kimi-k3.1-pro-highspeed",
+      "kimi-k3",
+      "kimi-k2.6"
+    ]
+  },
+  {
+    "id": "kimi-cn-api",
+    "name": "Kimi API",
+    "baseUrl": "https://api.moonshot.cn/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "kimi-k3.1-pro",
+      "kimi-k3.1-pro-highspeed",
+      "kimi-k3",
+      "kimi-k2.6"
+    ],
+    "groupId": "kimi",
+    "addressLabel": "API"
+  },
+  {
+    "id": "kimi-code",
+    "name": "Kimi Code",
+    "baseUrl": "https://api.kimi.com/coding/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "k3.1-pro",
+      "k3.1-pro-highspeed",
+      "k3",
+      "k3-256k",
+      "kimi-for-coding",
+      "kimi-for-coding-highspeed"
+    ],
+    "groupId": "kimi",
+    "addressLabel": "KIMI_CODE"
+  },
+  {
+    "id": "kimi-code-global",
+    "name": "Kimi Code International",
+    "baseUrl": "https://api.kimi.ai/coding/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "k3.1-pro",
+      "k3.1-pro-highspeed",
+      "k3",
+      "k3-256k",
+      "kimi-for-coding",
+      "kimi-for-coding-highspeed"
+    ],
+    "groupId": "kimi",
+    "addressLabel": "KIMI_CODE"
+  },
+  {
+    "id": "minimax",
+    "name": "MiniMax",
+    "baseUrl": "https://api.minimax.io/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "MiniMax-M3.1-Flash",
+      "MiniMax-M3"
+    ]
+  },
+  {
+    "id": "minimax-china",
+    "name": "MiniMax China",
+    "baseUrl": "https://api.minimax.cn/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "MiniMax-M3.1-Flash",
+      "MiniMax-M3"
+    ],
+    "groupId": "minimax",
+    "addressLabel": "API"
+  },
+  {
+    "id": "volcengine",
+    "name": "Volcengine",
+    "baseUrl": "https://ark.cn-beijing.volces.com/api/v3",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "doubao-seed-2-1-pro-260915"
+    ]
+  },
+  {
+    "id": "volcengine-coding",
+    "name": "Volcengine Coding Plan",
+    "baseUrl": "https://ark.cn-beijing.volces.com/api/coding/v3",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "ark-code-latest",
+      "kimi-k3.1-pro",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-economy",
+      "doubao-seed-evolving",
+      "doubao-seed-2.1-pro",
+      "doubao-seed-2.1-lite",
+      "kimi-k3",
+      "glm-5.3-flash",
+      "glm-5.3",
+      "deepseek-v4-flash",
+      "deepseek-v4-pro",
+      "kimi-k2.8-preview",
+      "doubao-seed-2.0-mini"
+    ],
+    "groupId": "volcengine",
+    "addressLabel": "CODING_PLAN"
+  },
+  {
+    "id": "volcengine-agent",
+    "name": "Volcengine Agent Plan",
+    "baseUrl": "https://ark.cn-beijing.volces.com/api/plan/v3",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "groupId": "volcengine",
+    "addressLabel": "AGENT_PLAN",
+    "suggestedModels": [
+      "ark-code-latest",
+      "kimi-k3.1-pro",
+      "deepseek-v4.1-flash",
+      "deepseek-v4.1-flash-economy",
+      "doubao-seed-evolving",
+      "doubao-seed-2.1-pro",
+      "doubao-seed-2.1-lite",
+      "kimi-k3",
+      "glm-5.3-flash",
+      "glm-5.3",
+      "deepseek-v4-flash",
+      "deepseek-v4-pro",
+      "kimi-k2.8-preview",
+      "doubao-seed-2.0-mini"
+    ]
+  },
+  {
+    "id": "hunyuan",
+    "name": "Tencent Hunyuan",
+    "baseUrl": "https://api.hunyuan.cloud.tencent.com/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "hunyuan-turbos-latest"
+    ]
+  },
+  {
+    "id": "tencent-coding",
+    "name": "Tencent Cloud Coding Plan",
+    "baseUrl": "https://api.lkeap.cloud.tencent.com/coding/v3",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "groupId": "hunyuan",
+    "addressLabel": "CODING_PLAN",
+    "suggestedModels": [
+      "tc-code-latest"
+    ]
+  },
+  {
+    "id": "tencent-token",
+    "name": "Tencent Cloud Token Plan",
+    "baseUrl": "https://api.lkeap.cloud.tencent.com/plan/v3",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "tc-code-latest",
+      "hy4-preview",
+      "glm-5.3-flash",
+      "glm-5.3",
+      "kimi-k3",
+      "minimax-m3",
+      "kimi-k2.7-code",
+      "hy3",
+      "deepseek-v4-pro-202606",
+      "deepseek-v4-flash-202605"
+    ],
+    "groupId": "hunyuan",
+    "addressLabel": "TOKEN_PLAN"
+  },
+  {
+    "id": "tencent-tokenhub",
+    "name": "Tencent Cloud Token Plan",
+    "baseUrl": "https://tokenhub.tencentmaas.com/plan/v3",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "groupId": "hunyuan",
+    "addressLabel": "TOKEN_PLAN",
+    "suggestedModels": [
+      "tc-code-latest",
+      "hy4-preview",
+      "glm-5.3-flash",
+      "glm-5.3",
+      "kimi-k3",
+      "minimax-m3",
+      "kimi-k2.7-code",
+      "hy3",
+      "deepseek-v4-pro-202606",
+      "deepseek-v4-flash-202605"
+    ]
+  },
+  {
+    "id": "siliconflow",
+    "name": "SiliconFlow",
+    "baseUrl": "https://api.siliconflow.cn/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "deepseek-ai/DeepSeek-V4.1-Flash",
+      "zai-org/GLM-5.3-Flash",
+      "zai-org/GLM-5.3",
+      "Qwen/Qwen3.8-27B",
+      "deepseek-ai/DeepSeek-V4-Flash",
+      "Qwen/Qwen3.6-27B",
+      "deepseek-ai/DeepSeek-V3.2"
+    ]
+  },
+  {
+    "id": "xai",
+    "name": "xAI",
+    "baseUrl": "https://api.x.ai/v1",
+    "apiType": "OPENAI_RESPONSES",
+    "transportKind": "OPENAI_RESPONSES",
+    "suggestedModels": [
+      "grok-4.7"
+    ]
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral AI",
+    "baseUrl": "https://api.mistral.ai/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "mistral-large-4-0",
+      "deepseek-v4-1-flash-1017",
+      "zai-glm-5-3-flash",
+      "zai-glm-5-3",
+      "mistral-small-2603"
+    ]
+  },
+  {
+    "id": "stepfun",
+    "name": "StepFun",
+    "baseUrl": "https://api.stepfun.com/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "step-5-preview"
+    ]
+  },
+  {
+    "id": "nvidia",
+    "name": "NVIDIA NIM",
+    "baseUrl": "https://integrate.api.nvidia.com/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "moonshotai/kimi-k3.1-pro",
+      "nvidia/nemotron-3.5-super-vl-120b-a12b",
+      "meta/llama-3.3-70b-instruct"
+    ]
+  },
+  {
+    "id": "groq",
+    "name": "Groq",
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "qwen/qwen3.8-27b",
+      "openai/gpt-oss-120b"
+    ]
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "MiniMaxAI/MiniMax-M3.1-Flash",
+      "zai-org/GLM-5.3-Flash",
+      "Qwen/Qwen3.8-27B",
+      "moonshotai/Kimi-K3",
+      "openai/gpt-oss-120b"
+    ]
+  },
+  {
+    "id": "modelscope",
+    "name": "ModelScope",
+    "baseUrl": "https://api-inference.modelscope.cn/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "Qwen/Qwen3.8-27B",
+      "Qwen/Qwen3.8-Flash-Next",
+      "MiniMax/MiniMax-M3",
+      "Qwen/Qwen3.5-35B-A3B"
+    ]
+  },
+  {
+    "id": "baidu",
+    "name": "Baidu Qianfan",
+    "baseUrl": "https://qianfan.baidubce.com/v2",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "ernie-5.1",
+      "ernie-5.0",
+      "ernie-4.0-turbo-128k"
+    ]
+  },
+  {
+    "id": "baidu-token",
+    "name": "Baidu Qianfan Token Plan",
+    "baseUrl": "https://qianfan.baidubce.com/v2/tokenplan/personal",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "deepseek-v4.1-flash",
+      "glm-5.3"
+    ],
+    "groupId": "baidu",
+    "addressLabel": "TOKEN_PLAN"
+  },
+  {
+    "id": "baidu-coding",
+    "name": "Baidu Qianfan Coding Plan",
+    "baseUrl": "https://qianfan.baidubce.com/v2/coding",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "qianfan-code-latest"
+    ],
+    "groupId": "baidu",
+    "addressLabel": "CODING_PLAN"
+  },
+  {
+    "id": "together",
+    "name": "Together AI",
+    "baseUrl": "https://api.together.ai/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "Qwen/Qwen3.8-27B",
+      "Qwen/Qwen3.6-Plus",
+      "Qwen/Qwen3.5-9B"
+    ]
+  },
+  {
+    "id": "fireworks",
+    "name": "Fireworks AI",
+    "baseUrl": "https://api.fireworks.ai/inference/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "accounts/fireworks/models/deepseek-v4p1-flash-1017",
+      "accounts/fireworks/models/ember-1",
+      "accounts/fireworks/models/deepseek-v4p1-flash",
+      "accounts/fireworks/models/glm-5p3"
+    ]
+  },
+  {
+    "id": "novita",
+    "name": "Novita AI",
+    "baseUrl": "https://api.novita.ai/openai/v1",
+    "apiType": "OPENAI_COMPATIBLE",
+    "transportKind": "GENERIC_CHAT_COMPLETIONS",
+    "suggestedModels": [
+      "deepseek/deepseek-v4.1-flash-1017",
+      "qwen/qwen3.8-27b"
+    ]
+  }
+]
