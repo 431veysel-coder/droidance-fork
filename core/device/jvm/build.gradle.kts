@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Your Name
+// SPDX-FileCopyrightText: 2026 YBBLab
 // SPDX-License-Identifier: Apache-2.0
 
 plugins {
@@ -33,7 +33,7 @@ android {
 
     // Assets for embedded JVM (optional, Geek Mode)
     aaptOptions {
-        noCompress "jar", "so", "zip"
+        noCompress("jar", "so", "zip")
     }
 }
 
