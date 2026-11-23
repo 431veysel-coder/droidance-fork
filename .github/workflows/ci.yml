@@ -28,7 +28,7 @@ jobs:
       - name: Verify source and native inputs
         run: python3 scripts/verify_source.py && python3 scripts/verify_native.py && python3 scripts/verify_secrets.py
       - name: Verify module architecture
-        run: ./gradlew verifyArchitecture
+        run: ./gradlew verifyArchitecture --info
       - name: Lint
         run: ./gradlew :app:lintDebug
       - name: Release APK (R8)
