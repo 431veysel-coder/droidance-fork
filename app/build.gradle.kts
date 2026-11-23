@@ -139,6 +139,9 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:agent"))
     implementation(project(":core:device"))
+    implementation(project(":core:device:browser"))
+    implementation(project(":core:device:jvm"))
+    implementation(project(":core:device:termux"))
     implementation(project(":core:knowledge"))
     implementation(project(":core:persistence"))
     // AndroidX 核心
